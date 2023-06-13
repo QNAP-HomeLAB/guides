@@ -1,6 +1,6 @@
 Guide - VPN via Docker Container
 
-There are several different VPN containers that would work perfectly fine, including some with included torrent apps, but I have had good luck with the `qmcgaw/gluetun` container. Gluetun is compatible with many different VPN providers, so is a great place to start. The (gluetun wiki)[https://github.com/qdm12/gluetun/wiki/Custom-provider] provides detailed instructions on configuring each supported VPN. I personally use Private Internet Access, so that is the example I will show here.
+There are several different VPN containers that would work perfectly fine, including some with included torrent apps, but I have had good luck with the `qmcgaw/gluetun` container. Gluetun is compatible with many different VPN providers, so is a great place to start. The [gluetun wiki](https://github.com/qdm12/gluetun/wiki/Custom-provider) provides detailed instructions on configuring each supported VPN. I personally use Private Internet Access, so that is the example I will show here.
 
 ```yaml
 version: "3"
@@ -63,7 +63,7 @@ Save this compose file in its own directory, for example:
 There are various other things you can do to make container management easier, such as bind-mounting all your volumes, and passing "secrets" into the compose file so there is no clear-text sensitive information, but those can be addressed in a separate guide.
 
 
-Save this `docker-compose.yml` file in a directory that you can access via ssh terminal, or create an app using Container Station and paste in the above compose file. You should be able to run this docker-compose file. I wrote an in-depth guide on folder structure and how to manage docker containers using the terminal in the (QNAP-HomeLAB/docker-scripts)[https://github.com/QNAP-HomeLAB/docker-scripts] github repository.
+Save this `docker-compose.yml` file in a directory that you can access via ssh terminal, or create an app using Container Station and paste in the above compose file. You should be able to run this docker-compose file. I wrote an in-depth guide on folder structure and how to manage docker containers using the terminal in the [QNAP-HomeLAB/docker-scripts](https://github.com/QNAP-HomeLAB/docker-scripts) github repository.
 
 ```bash
 docker compose -f /share/docker/compose/gluetun/gluetun-compose.yml up -d --remove-orphans
@@ -84,7 +84,7 @@ Individual Container IP command:
 docker container exec -it containername wget -qO- ipinfo.io/ip
 ```
 
-Now we are ready to set up a container that can only access the internet through this Gluetun VPN connection. Speedtest.net provides a very simple container that works well for this purpose. Note the seven lines I have commented out using a `#` at the front of the line. `depends_on` will only work if this container is a service in the same compose file as the VPN, `networks` and `ports` are only used if the container has it's own network connection, and `network_mode` is necessary so this container attaches to the indicated container for network access.
+Now we are ready to set up a container that can only access the internet through this Gluetun VPN connection. A very simple speedtest container from `openspeedtest` works well for this purpose. Note the seven lines I have commented out using a `#` at the front of the line. `depends_on` will only work if this container is a service in the same compose file as the VPN, `networks` and `ports` are only used if the container has it's own network connection, and `network_mode` is necessary so this container attaches to the indicated container for network access.
 
 ```yaml
 version: "3"
@@ -186,4 +186,4 @@ services:
       - "vpn"
 ```
 
-Let me know if there are issues with this guide, or you find it difficult to follow. I will post the most updated version in the (QNAP-homelab/docker-guides)[https://github.com/QNAP-HomeLAB/guides] repository once this goes live.
+Let me know if there are issues with this guide, or you find it difficult to follow. I will post the most updated version in the [QNAP-homelab/docker-guides](https://github.com/QNAP-HomeLAB/guides) repository once this goes live.
