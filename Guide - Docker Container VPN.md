@@ -36,7 +36,7 @@ version: "3"
 
 networks:
   reverse_proxy:
-    external: 'true'
+    external: true
 
 services:
 
@@ -112,7 +112,7 @@ version: "3"
 
 networks:
   reverse_proxy:
-    external: 'true'
+    external: true
 
 services:
   app:
@@ -155,7 +155,7 @@ version: "3"
 
 networks:
   reverse_proxy:
-    external: 'true'
+    external: true
 
 services:
   app:
